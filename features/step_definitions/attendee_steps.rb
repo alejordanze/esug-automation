@@ -1,9 +1,10 @@
 Given('I am on the ESUG homepage') do
-    pending # Write code here that turns the phrase above into concrete actions
-  end
+    page.driver.browser.manage.window.maximize
+    visit ('http://semantics.bo:8000/ESUG')
+end
   
   Given('I click the {string} link') do |string|
-    pending # Write code here that turns the phrase above into concrete actions
+    click_link(linkText)
   end
   
   When('I enter the required fields for user as show below') do |table|
