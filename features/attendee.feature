@@ -9,7 +9,7 @@ Scenario: Fill registration
     |First Name: 	    | Brayan             |
     |Last Name: 	    | Sejas              |
     |Email: 	        | brayan@gmail.com   |
-link    |Password:          | 12345678           | 
+    |Password:          | 12345678           | 
     |Confirm Password:  | 12345678           |
     And I click the "NEXT" button
     And I enter the required fields for contact as show below
