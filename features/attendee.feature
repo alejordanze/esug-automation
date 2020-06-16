@@ -4,12 +4,12 @@ Feature: As an attendee
 
 Scenario: Fill registration        
 	Given I am on the ESUG homepage
-	And I click the "REGISTER" link
+	And I click the "REGISTER" 
 	When I enter the required fields for user as show below
     |First Name: 	    | Brayan             |
     |Last Name: 	    | Sejas              |
     |Email: 	        | brayan@gmail.com   |
-    |Password:          | 12345678           | 
+link    |Password:          | 12345678           | 
     |Confirm Password:  | 12345678           |
     And I click the "NEXT" button
     And I enter the required fields for contact as show below
