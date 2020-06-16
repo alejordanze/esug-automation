@@ -1,6 +1,6 @@
 Feature: As an attendee
 	I want to register to the talk
-	so I be present on the talk
+	so I will learn something new
 
 Scenario: Fill registration        
 	Given I am on the ESUG homepage
@@ -16,19 +16,15 @@ Scenario: Fill registration
     |Address:	    	| Av. Calampamapa    |
     |City: 	            | Cochabamba         |
     |Postal/Zipcode:    | 591                |
-    And I select option "Bolivia" 
+    And I select country option as "Bolivia" 
     And I click the "NEXT" button
     And I enter the required fields for conference as show below
     And I select "Gender" option "Male"
     And I select "Tshirt Size" option "L"
     And I select "Food Preference" option "Normal"
-    And I select checkbox "Monday"
-    And I select checkbox "Tuesday"
-    And I select checkbox "Wednesday"
-    And I select checkbox "Thursday"
-    And I select checkbox "Friday"
-    And I select checkbox "Check if you will you go to the social Event"
-    And I select checkbox "Check if you want to be added to the Mailling List"
+    And I select days from "Monday" to "Friday"
+    And I select the option "to go to the  social Event"
+    And I select the option "to be added to the Mailling List"
     And I click the "NEXT" button
     And I enter the required fields for billing as show below
     |Name:	    	    | Sejas              |
@@ -41,9 +37,7 @@ Scenario: Fill registration
     And I see payment section
     And I click the "FINALIZE REGISTRATION" button
     Then the Registration Summary is show
-	And my "First Name" name is "Jack"
-    And I click "OK" button
-
+	And my "First Name" name is "Brayan"
 
 Scenario: Get pdf invoce after I filled registration        
 	Given I am on the ESUG homepage
@@ -59,19 +53,15 @@ Scenario: Get pdf invoce after I filled registration
     |Address:	    	| Av. Calampamapa    |
     |City: 	            | Cochabamba         |
     |Postal/Zipcode:    | 591                |
-    And I select option "Bolivia" 
+    And I select country option as "Bolivia" 
     And I click the "NEXT" button
     And I enter the required fields for conference as show below
     And I select "Gender" option "Male"
     And I select "Tshirt Size" option "L"
     And I select "Food Preference" option "Normal"
-    And I select checkbox "Monday"
-    And I select checkbox "Tuesday"
-    And I select checkbox "Wednesday"
-    And I select checkbox "Thursday"
-    And I select checkbox "Friday"
-    And I select checkbox "Check if you will you go to the social Event"
-    And I select checkbox "Check if you want to be added to the Mailling List"
+    And I select days from "Monday" to "Friday"
+    And I select the option "to go to the  social Event"
+    And I select the option "to be added to the Mailling List"
     And I click the "NEXT" button
     And I enter the required fields for billing as show below
     |Name:	    	    | Sejas              |
@@ -84,6 +74,6 @@ Scenario: Get pdf invoce after I filled registration
     And I see payment section
     And I click the "FINALIZE REGISTRATION" button
     Then the Registration Summary is show
-	And my "First Name" name is "Jack"
+	And my "First Name" name is "Brayan"
     And I click "GET INVOICE" button
-    And I download the invoice
+    And I see my downloaded invoice
