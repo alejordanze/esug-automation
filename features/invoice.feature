@@ -19,8 +19,7 @@ Scenario: Validate that the downloaded invoices part is working
     And I press "login" button
     And I am on "Home" page
     And I prees "Invoices" option
-    When I press "EXPORT ALL INVOICE"
-    And I press "DOWNLOAD INVOICES"
+    When I press "DOWNLOAD INVOICES"
     And I will see a window to confirm to "Download the zip fie"
     And I press "OK"
     Then I will downloaded a zip file
