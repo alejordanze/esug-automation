@@ -38,8 +38,6 @@ link    |Password:          | 12345678           |
     And I click the "FINALIZE REGISTRATION" button
     Then the Registration Summary is show
 	And my "First Name" name is "Brayan"
-    And I click "OK" button
-
 
 Scenario: Get pdf invoce after I filled registration        
 	Given I am on the ESUG homepage
@@ -78,4 +76,4 @@ Scenario: Get pdf invoce after I filled registration
     Then the Registration Summary is show
 	And my "First Name" name is "Brayan"
     And I click "GET INVOICE" button
-    And I download the invoice
+    And I see my downloaded invoice
