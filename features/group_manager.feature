@@ -10,7 +10,7 @@ Scenario: Leave fields in blank in group manager register page
     And I press "Group Manager" button
 	And I left all fields in blank
 	When I press the "Next" button
-	Then error "This field is required." is showed
+	Then error message "This field is required." is showed
 
 Scenario: Verify new user registration
     And I press "Group Manager" button
@@ -40,7 +40,7 @@ Scenario: Verify new group manager login
     And I login with data below
     |Email:   | mail@mail.com |
     |Password: | 12345678      |
-    When I press Login button
+    When I press the Login button
     Then Should show "ESUG 2019 Date and Location Announced" page
 
 @deleteUser
@@ -48,7 +48,7 @@ Scenario: Verify new group user registration
     And I login with data below
     |Email:   | mail@mail.com |
     |Password: | 12345678      |
-    And I press Login button
+    And I press the Login button
     And I press "Group Management" button
     And I press "Register new group user" button
     And I fill the register as below
