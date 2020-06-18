@@ -5,18 +5,18 @@ Feature: As an attendee
 Scenario: Fill registration        
 	Given I am on the ESUG homepage
 	And I click "Register" 
-	When I enter the required fields below
+	When I enter the required fields as below
     |First Name: 	    | Brayan             |
     |Last Name: 	    | Sejas              |
     |Email: 	        | brayan@gmail.com   |
     |Password:          | 12345678           | 
     |Confirm Password:  | 12345678           |
     And I click "NEXT"
-    And I enter the required fields as below
+        And I enter the required fields as below
     |Address:	    	| Av. Calampamapa    |
     |City: 	            | Cochabamba         |
     |Postal/Zipcode:    | 591                |
-    |Country:           | Bolivia            |
+    |Country:           | Bolivia            |    
     And I click "NEXT"
     And I enter the required fields as below
     And I select "Gender" option as "Male"
