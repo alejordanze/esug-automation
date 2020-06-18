@@ -2,22 +2,24 @@ Feature: As an attendee
 	I want to register to the talk
 	so I will learn something new
 
+Background: I'm on the login page
+    Given I am on the login page
+
 Scenario: Fill registration        
-	Given I am on the ESUG homepage
-	And I click "Register" 
+	And I press Register option 
 	When I enter the required fields as below
     |First Name: 	    | Brayan             |
     |Last Name: 	    | Sejas              |
     |Email: 	        | brayan@gmail.com   |
     |Password:          | 12345678           | 
     |Confirm Password:  | 12345678           |
-    And I click "NEXT"
-        And I enter the required fields as below
+    And I press the Next in User form
+    And I enter the required fields as below
     |Address:	    	| Av. Calampamapa    |
     |City: 	            | Cochabamba         |
     |Postal/Zipcode:    | 591                |
     |Country:           | Bolivia            |    
-    And I click "NEXT"
+    And I press the Next in Contact form
     And I enter the required fields as below
     And I select "Gender" option as "Male"
     And I select "Tshirt Size" option as "L"
