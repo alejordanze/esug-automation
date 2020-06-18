@@ -87,10 +87,6 @@ Given('I login with data below') do |table|
         end
     end
 end
-  
-When('I press Login button') do
-    find(:xpath, '/html/body/div[1]/div/div/div/div[1]/form/button[1]/span').click
-end
 
 Given('I select all days') do
     pending # Write code here that turns the phrase above into concrete actions

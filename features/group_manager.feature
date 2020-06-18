@@ -40,7 +40,7 @@ Scenario: Verify new group manager login
     And I login with data below
     |Email:   | mail@mail.com |
     |Password: | 12345678      |
-    When I press Login button
+    When I press the Login button
     Then Should show "ESUG 2019 Date and Location Announced" page
 
 @deleteUser
