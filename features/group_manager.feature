@@ -10,7 +10,7 @@ Scenario: Leave fields in blank in group manager register page
     And I press "Group Manager" button
 	And I left all fields in blank
 	When I press the "Next" button
-	Then error message "This field is required." is showed
+	Then error "This field is required." is showed
 
 Scenario: Verify new user registration
     And I press "Group Manager" button
