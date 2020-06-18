@@ -3,57 +3,45 @@ Given('I am on the ESUG homepage') do
   visit ('http://semantics.bo:8000/ESUG')
 end
 
-Given('I click the {string}') do |string|
-  find(:xpath, '/html/body/div[1]/div/div/div/div[1]/form/button[2]').clickend
+Given('I click {string}') do |buttonName|
+  click_link(buttonName)
+end
 
-When('I enter the required fields for user as show below') do |table|
+# When('I click {string}') do |string|
+#   find(:xpath, '/html/body/div/div/div/form/div/div[3]/a[3]/span').clickend
+# end
+
+When('I enter the required fields as below') do |table|
   data = table.rows_hash
   data.each_pair do |key, value|
     case key
-    when "First Name:"
-      fill_in 'firstName', :with => value
-      @name = value
-    when "Last Name:"
-      fill_in 'lastName', :with => value
-      @lastName = value
-    when "Email:"
-      fill_in 'email', :with => value
-      @email = value
-    when "Password:"
-      fill_in 'password', :with => value
-    when "Confirm Password:"
-      fill_in 'confirmPassword', :with => value
-      @password = value
-    when "Address:"
-      fill_in 'address1', :with => value
-    when "City:"
-      fill_in 'city', :with => value
-    when "State/Province:"
-      fill_in 'state', :with => value
-    when "Postal Code:"
-      fill_in 'postalCode', :with => value
-    when "Country:"
-      select(value, :from => 'country')
-    when "User Name:"
-      fill_in 'email', :with => value
-      @userName = value
+      when "First Name:"
+        fill_in 'firstName1', :with => value
+      when "Last Name:"
+        fill_in 'lastName1', :with => value
+      when "Email:"
+        fill_in 'email1', :with => value
+      when "Password:"
+        fill_in 'passwordRegister1', :with => value
+      when "Confirm Password:"
+        fill_in 'confirmPasswordRegister1', :with => value
+      when "Address:"
+        fill_in 'address1', :with => value
+      when "City:"
+        fill_in 'city', :with => value
+      when "Postal/Zipcode:"
+        fill_in 'postal', :with => value
+      when "Name:"
+        fill_in 'organizationName', :with => value
+      when "Address 1:"
+        fill_in 'organizationAddrees1', :with => value
+      when "Country:"
+        select(value, :from => 'contactCountry')
     end
-end
-
-When('I click the {string} button') do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When('I enter the required fields for contact as show below') do |table|
-  # table is a Cucumber::MultilineArgument::DataTable
-  pending # Write code here that turns the phrase above into concrete actions
+  end
 end
 
 When('I select {string} option as {string}') do |string, string2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When('I enter the required fields for conference as show below') do
   pending # Write code here that turns the phrase above into concrete actions
 end
 
@@ -62,11 +50,6 @@ When('I select days from {string} to {string}') do |string, string2|
 end
 
 When('I select the option {string}') do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When('I enter the required fields for billing as show below') do |table|
-  # table is a Cucumber::MultilineArgument::DataTable
   pending # Write code here that turns the phrase above into concrete actions
 end
 
