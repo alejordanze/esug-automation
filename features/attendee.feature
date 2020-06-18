@@ -13,30 +13,24 @@ Scenario: Fill registration
     |Email: 	        | brayan@gmail.com   |
     |Password:          | 12345678           | 
     |Confirm Password:  | 12345678           |
-    And I press the Next in User form
+    And I press the Next in "User" form
     And I enter the required fields as below
     |Address:	    	| Av. Calampamapa    |
     |City: 	            | Cochabamba         |
     |Postal/Zipcode:    | 591                |
     |Country:           | Bolivia            |    
-    And I press the Next in Contact form
+    And I press the Next in "Contact" form
     And I enter the required fields as below
-    And I select "Gender" option as "Male"
-    And I select "Tshirt Size" option as "L"
-    And I select "Food Preference" option as "Normal"
-    And I select days from "Monday" to "Friday"
-    And I select the option "to go to the  social Event"
-    And I select the option "to be added to the Mailling List"
-    And I click "NEXT"
+    |Gender             |Male                |
+    |Tshirt size        |L                   |
+    |Food Preference    |Normal              |  
+    And I press the Next in "Conference" form
     And I enter the required fields as below
     |Name:	    	    | Sejas              |
     |Address 1: 	    | Av. Calampampa     |
-    |City: 	            | Cochabamba         |
-    |Postal/Zipcode:    | 591                |     
-    And I click "NEXT"
-    And I see addition section
-    And I click "NEXT"
-    And I see payment section
-    And I click "FINALIZE REGISTRATION"
-    Then the Registration Summary is show
-	And my "First Name" name is "Brayan"
+    |Zip Code 1:    | 591                |
+    |City 1:            | Cochabamba         |
+    And I press the Next in "Billing" form
+    And I press the Next in "Additional" form
+    And I press the Next in "Finalize Registration" form
+    Then Should show "Registration Summary" page

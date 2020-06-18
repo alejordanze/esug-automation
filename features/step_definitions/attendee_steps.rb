@@ -34,14 +34,29 @@ Given('I enter the required fields as below') do |table|
               find('#organizationCountry').find(:xpath, '/html/body/div/div[1]/div/form/div/div[4]/div[6]/div/select/option[28]').select_option
           when "Zip Code 1:"
               fill_in 'organizationPostal' , :with => value
+          when "Gender"
+            find('#gender').find(:xpath, '/html/body/div/div/div/form/div/div[4]/div[7]/div/select').select_option
+          when "Tshirt size"
+            find('#tshirtSize').find(:xpath, '/html/body/div/div/div/form/div/div[4]/div[8]/div/select').select_option
+          when "Food Preference"
+            find('#foodPreference').find(:xpath, '/html/body/div/div/div/form/div/div[4]/div[9]/div/select').select_option
       end
   end 
 end
 
-Given('I press the Next in User form') do
-  find(:xpath, '/html/body/div/div/div/form/div/div[2]/a[2]/span').click
-end
-
-Given('I press the Next in Contact form') do
-  find(:xpath, '/html/body/div/div/div/form/div/div[3]/a[3]/span').click
+Given('I press the Next in {string} form') do |string|
+  case string
+  when "User"
+    find(:xpath, '/html/body/div/div/div/form/div/div[2]/a[2]/span').click
+  when "Contact"
+    find(:xpath, '/html/body/div/div/div/form/div/div[3]/a[3]/span').click
+  when "Conference"
+    find(:xpath, '/html/body/div/div/div/form/div/div[4]/a[3]/span').click
+  when "Billing"
+    find(:xpath, '/html/body/div/div/div/form/div/div[5]/a[3]/span').click
+  when "Additional"
+    find(:xpath, '/html/body/div/div/div/form/div/div[6]/a[3]/span').click
+  when "Finalize Registration"
+    find(:xpath, '/html/body/div/div/div/form/div/div[7]/button/span').click
+  end
 end
