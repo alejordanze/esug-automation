@@ -40,4 +40,4 @@ Scenario: Fill registration
 Scenario: Verify that my user exists
     When I enter as admin
     Then I should see my email on accouts
-    And Should show the user "brayan@mail.com" in the table
+    And Should show the user "brayan@gmail.com" in the table
