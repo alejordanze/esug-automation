@@ -43,6 +43,17 @@ Scenario: Verify new group manager login
     When I press the Login button
     Then Should show "ESUG 2019 Date and Location Announced" page
 
+@deleteFile
+Scenario: Verify download invoice no users in group 
+    And I login with data below
+    |Email:   | mail@mail.com |
+    |Password: | 12345678     |
+    And I press the Login button
+    And I press "Group Management" button
+    And I verify that the users group table its empty
+    When I press Download Invoice button
+    Then The invoice should be downloaded
+
 Scenario: Verify new group user registration
     And I login with data below
     |Email:   | mail@mail.com |
@@ -65,6 +76,17 @@ Scenario: Verify new group user registration
     And I left all fields in blank
     When I press Finalize Registration button on user 1
     Then Should show the user "egarcia@mail.com" in the table
+
+@deleteFile
+Scenario: Verify download invoice with users in group 
+    And I login with data below
+    |Email:   | mail@mail.com |
+    |Password: | 12345678     |
+    And I press the Login button
+    And I press "Group Management" button
+    And I verify that exists users in group
+    When I press Download Invoice button
+    Then The invoice should be downloaded
 
 Scenario: Verify remove user from group
     And I login with data below
@@ -113,4 +135,3 @@ Scenario: Verify remove user while creating in conference 1 tab
     |Food Preference: 	| Vegan  |
     When I press remove button on user 1 in conference tab
     Then Register form should dissapear
-

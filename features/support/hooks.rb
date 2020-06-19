@@ -15,3 +15,7 @@ After("@deleteUser") do
     click_link('Users')
     visit(find(:xpath, "//tr[contains(.,'mail@mail.com')]/td/a", :text => 'delete')[:href])
 end
+
+After("@deleteFile") do
+    File.delete(DOWNLOAD_PATH+"/invoice-204gxoqu4di5snmgory5likk.pdf") if File.exist?(DOWNLOAD_PATH+"/invoice-204gxoqu4di5snmgory5likk.pdf")
+end

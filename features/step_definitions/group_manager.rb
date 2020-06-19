@@ -163,3 +163,21 @@ end
 Then('Register form should dissapear') do
     expect(page).to have_no_content('New user 1')
 end
+
+When('I press Download Invoice button') do
+    visit(find('#exportInvoice')[:href])
+    sleep 2
+end
+
+Then('The invoice should be downloaded') do
+    full_path = DOWNLOAD_PATH+"/invoice-204gxoqu4di5snmgory5likk.pdf"
+    expect(File.exist?(full_path)).to be true
+end
+
+Given('I verify that the users group table its empty') do
+    
+end
+
+Given('I verify that exists users in group') do
+    page.has_content?('Payment no registered yet')
+end
