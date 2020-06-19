@@ -5,6 +5,7 @@ Feature: As an attendee
 Background: I'm on the login page
     Given I am on the login page
 
+@deleteUser
 Scenario: Fill registration        
 	And I press Register option 
 	When I enter the required fields as below
@@ -28,9 +29,10 @@ Scenario: Fill registration
     And I enter the required fields as below
     |Name:	    	    | Sejas              |
     |Address 1: 	    | Av. Calampampa     |
-    |Zip Code 1:    | 591                |
+    |Zip Code 1:        | 591                |
     |City 1:            | Cochabamba         |
     And I press the Next in "Billing" form
     And I press the Next in "Additional" form
     And I press the Next in "Finalize Registration" form
-    Then Should show "Registration Summary" page
+    Then Should show the user "brayan@gmail.com" in the table
+
