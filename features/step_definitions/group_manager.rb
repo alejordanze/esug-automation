@@ -87,10 +87,6 @@ Given('I login with data below') do |table|
         end
     end
 end
-
-Given('I select all days') do
-    pending # Write code here that turns the phrase above into concrete actions
-end
   
 When('I press {string}') do |buttonName|
     click_link(buttonName)
@@ -131,6 +127,14 @@ Given('I fill the register as below') do |table|
     end 
 end
 
+When('I remove user with email {string}') do |email|
+    visit(find(:xpath, "//tr[contains(.,'#{email}')]/td/a", :text => 'delete')[:href])
+end
+
+Then('User with email {string} should dissapear from table') do |email|
+    expect(page).to have_no_content(email)
+end
+
 Given('I press Next button on user {int}') do |number|
     find('#basicInfoForm'+number.to_s+'-nextButton').click
 end
@@ -145,4 +149,17 @@ end
 
 Given('I press Finalize Registration button on user {int}') do |number|
     find('#registerButton'+number.to_s).click
+end
+  
+When('I press remove button on user {int}') do |number|
+    find('#basicInfoForm'+number.to_s+'-removeRegister').click
+end
+
+  
+When('I press remove button on user {int} in conference tab') do |number|
+    find('#conferenceOptionsForm'+number.to_s+'-removeRegister').click
+end
+
+Then('Register form should dissapear') do
+    expect(page).to have_no_content('New user 1')
 end
