@@ -36,3 +36,8 @@ Scenario: Fill registration
     And I press the Next in "Finalize Registration" form
     Then Should show the user "brayan@gmail.com" in the table
 
+
+Scenario: Verify that my user exists
+    When I enter as admin
+    Then I should see my email on accouts
+    And Should show the user "brayan@mail.com" in the table
