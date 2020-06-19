@@ -63,3 +63,10 @@ Feature: Login
         And I have entered a long email on the email field
         When I press the Login button
         Then error message "Login failed." is showed
+
+    Scenario: Logout
+        And I have entered a valid "email" on the email field
+        And I have entered a "password" on the password field
+	    And I press the Login button
+        When I press "Logout" button
+        Then I am on the login page
