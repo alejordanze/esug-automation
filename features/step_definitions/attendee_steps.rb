@@ -60,3 +60,13 @@ Given('I press the Next in {string} form') do |string|
     find(:xpath, '/html/body/div/div/div/form/div/div[7]/button/span').click
   end
 end
+
+When('I enter as admin') do
+  fill_in 'email-login', :with => 'admin@esug.org'
+  fill_in 'password-login', :with => '12345678'
+  find(:xpath, '/html/body/div[1]/div/div/div/div[1]/form/button[1]/span').click
+end
+
+Then('I should see my email on accouts') do
+  find(:xpath, '/html/body/div/div/div[1]/nav/a[4]').click
+end
