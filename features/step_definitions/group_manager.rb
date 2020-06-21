@@ -11,10 +11,6 @@ Given('I press {string} button') do |buttonName|
     click_link(buttonName)
 end
 
-Given('I click the {string} buttonlink') do |buttonName|
-    find(:css, '#contactInfoForm-nextButton').click
-end
-
 Given('I press the Next button in group manager form') do
     find(:xpath, '/html/body/div/div[1]/div/form/div/div[2]/a[2]').click
 end
@@ -28,7 +24,9 @@ When('I press Finalize Registration button on Group Manager registration') do
 end
 
 When('I left all fields in blank') do
-    log('to be implemented')
+    firstname = find(:xpath, '/html/body/div/div[1]/div/form/div/div[2]/div[1]/div/input')['value']
+    log(firstname)
+    expect(firstname).to eq('')
 end
   
 When('I press the {string} button') do |buttonName|
@@ -49,6 +47,7 @@ Given('I fill the required fields as below') do |table|
             when "Last Name:"
                 fill_in 'lastName', :with => value
             when "Email:"
+                @email = value
                 fill_in 'email', :with => value
             when "Password:"
                 fill_in 'passwordRegister', :with => value
@@ -100,7 +99,6 @@ Then('Should show the user {string} in the table') do |email|
     find('tr', text: email)
 end
   
-
 Given('I fill the register as below') do |table|
     data = table.rows_hash
     data.each_pair do |key, value|
@@ -139,10 +137,6 @@ Given('I press Next button on user {int}') do |number|
     find('#basicInfoForm'+number.to_s+'-nextButton').click
 end
     
-Given('I leave the selected days') do
-    log(find('#monday1').text)
-end
-    
 Given('I press Next button on conference {int}') do |number|
     find('#conferenceOptionsForm'+number.to_s+'-nextButton').click
 end
@@ -154,30 +148,114 @@ end
 When('I press remove button on user {int}') do |number|
     find('#basicInfoForm'+number.to_s+'-removeRegister').click
 end
-
   
 When('I press remove button on user {int} in conference tab') do |number|
     find('#conferenceOptionsForm'+number.to_s+'-removeRegister').click
 end
 
 Then('Register form should dissapear') do
+    ENV['email_delete'] = "mail@mail.com"
     expect(page).to have_no_content('New user 1')
 end
 
 When('I press Download Invoice button') do
     visit(find('#exportInvoice')[:href])
-    sleep 2
+    sleep 3
 end
 
 Then('The invoice should be downloaded') do
-    full_path = DOWNLOAD_PATH+"/invoice-204gxoqu4di5snmgory5likk.pdf"
-    expect(File.exist?(full_path)).to be true
+    file = Dir.glob(DOWNLOAD_PATH+'/*').max_by(1) {|f| File.mtime(f)}
+    fileName = file[0][DOWNLOAD_PATH.size + 1, file[0].size-1]
+    ENV['file_delete'] = fileName
+    expect(verifyPdfName?(fileName)).to be true
+    expect(File.size(DOWNLOAD_PATH + '/' + fileName)).to be > 0
 end
 
-Given('I verify that the users group table its empty') do
-    
+def verifyPdfName?(str)
+    !!(str =~ /invoice-204[0-9a-z]{21,}.pdf/)
 end
 
 Given('I verify that exists users in group') do
     page.has_content?('Payment no registered yet')
+end
+
+Given('I verify that the users group table its empty') do
+    expect(page).to have_no_selector(:xpath, '/html/body/div/div[1]/main/div/div/div[4]/table/tbody')
+end
+  
+Given('I click {string} on {string}') do |button, email|
+    visit(find(:xpath, "//tr[contains(.,'#{email}')]/td/a", :text => 'edit')[:href])
+end
+  
+Given('I modify the size of Tshirt to {string}') do |value|
+    select value, :from => "tshirtSize1"
+end
+
+Given('I unselect {string} from assistance days') do |string|
+    xpath = '/html/body/div/div[1]/main/div/form/div/div/div[2]/div[2]/label'
+    css_class = find(:xpath, xpath)[:class]
+    if(css_class.include?('is-checked'))
+        find(:xpath, xpath).click
+    end
+    expect(find(:xpath, xpath)[:class]).not_to have_selector '.is-checked'
+    find('#conferenceOptionsForm-nextButton').click
+end
+
+Given('I press Finalize Registration button on modifiying user') do
+    find('#registerButton').click
+end
+
+Then('Should show the next information in table') do |table|    
+    data = table.rows_hash
+    data.each_pair do |key, value|
+        case key
+            when "Email:"
+                expect(find(:xpath, '/html/body/div/div[1]/main/div/div/div[4]/table/tbody/tr/td[2]').text).to eq(value);
+            when "Fee:"
+                expect(find(:xpath, '/html/body/div/div[1]/main/div/div/div[4]/table/tbody/tr/td[3]').text).to eq(value);
+        end
+    end
+end
+
+Given('I modify contact address to {string}') do |value|
+    fill_in 'address', :with => value
+end
+
+
+Given('I modify billing address to {string}') do |value|
+    fill_in 'organizationAddrees1', :with => value
+end
+  
+Given('I press Next button on contact form') do
+   find('#contactInfoForm-nextButton').click
+end
+
+Given('I press Next button on billing form') do
+    find('#affiliationInfoForm-nextButton').click
+ end
+  
+When('I press Finalize Registation button') do
+    click_link('Finalize Registration')
+end
+  
+Then('I should see {string} page') do |text|
+    page.has_content?(text)
+end
+
+Given('I select {string} in payment type') do |value|
+    select value, :from => "6"
+end
+  
+When('I press Accept button on payment information') do
+    find('#accept-change-affiliation').click
+end
+
+Given('I see the amount increase') do
+    amount = 470 + ((470 * ENV['PAYPAL_COMMISSION'].to_f)/100) + ENV['STATIC_COMMISSION'].to_f
+    page.has_content?(amount.to_s)
+end
+
+Given('I see the amount decrease') do
+    amount = 470
+    page.has_content?(amount.to_s)
 end
