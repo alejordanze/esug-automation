@@ -6,6 +6,18 @@ require 'capybara-screenshot/cucumber'
 require "selenium/webdriver"
 Capybara.default_driver = :selenium
 
+#Admin Login Settings
+ENV['admin_email'] = "admin@esug.org"
+ENV['admin_password'] = "12345678"
+
+ENV['PAYPAL_COMMISSION'] = "5.4"
+ENV['STATIC_COMMISSION'] = "0.3"
+#Email to delete
+ENV['email_delete'] = ""
+
+#File to delete
+ENV['file_delete'] = ""
+
 # Set the host the Capybara tests should be run against
 Capybara.app_host = ENV["CAPYBARA_HOST"]
 
@@ -20,9 +32,6 @@ class CapybaraDriver
   # register a Selenium driver for the given browser to run on the localhost
   def self.register_selenium_driver(browser)
     Capybara.register_driver :selenium do |app|
-      # Capybara::Selenium::Driver.new(app, :browser => browser)
-      # profile = Selenium::WebDriver::Chrome::Profile.new
-      # profile["download.default_directory"] = DOWNLOAD_PATH
       Capybara::Selenium::Driver.new(app, :browser => browser)
     end
   end
