@@ -11,6 +11,7 @@ Then('user {string} is marked as Has Paid') do |string|
     @tr.find('.mdl-checkbox__input').should be_checked
 end
 
+git
 When('I click {string}') do |string|
     case string
         when "Export all invoices"
