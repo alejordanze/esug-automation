@@ -62,8 +62,8 @@ Given('I press the Next in {string} form') do |string|
 end
 
 When('I enter as admin') do
-  fill_in 'email-login', :with => 'admin@esug.org'
-  fill_in 'password-login', :with => '12345678'
+  fill_in 'email-login', :with => ENV['admin_email']
+  fill_in 'password-login', :with => ENV['admin_password']
   find(:xpath, '/html/body/div[1]/div/div/div/div[1]/form/button[1]/span').click
 end
 
