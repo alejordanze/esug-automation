@@ -73,9 +73,33 @@ Scenario: Verify new group user registration
     |Tshirt Size: 	    | XL         |
     |Food Preference: 	| Vegan  |
     And I press Next button on conference 1
-    And I left all fields in blank
     When I press Finalize Registration button on user 1
     Then Should show the user "egarcia@mail.com" in the table
+
+@getPayment
+Scenario: Verify payment information form credit card
+    And I login with data below
+    |Email:   | mail@mail.com |
+    |Password: | 12345678      |
+    And I press the Login button
+    And I press "Group Management" button
+    And I press "Payment information" button
+    And I select "Credit Card" in payment type
+    And I see the amount increase 
+    When I press Accept button on payment information
+    Then I should see "Pay with PayPal" page
+
+Scenario: Verify payment information form credit card
+    And I login with data below
+    |Email:   | mail@mail.com |
+    |Password: | 12345678      |
+    And I press the Login button
+    And I press "Group Management" button
+    And I press "Payment information" button
+    And I select "Bank transfer" in payment type
+    And I see the amount decrease 
+    When I press Accept button on payment information
+    Then I should see "Registration" page
 
 @deleteFile
 Scenario: Verify download invoice with users in group 
@@ -88,6 +112,20 @@ Scenario: Verify download invoice with users in group
     When I press Download Invoice button
     Then The invoice should be downloaded
 
+Scenario: Verify modify attendee information
+    And I login with data below
+    |Email:   | mail@mail.com |
+    |Password: | 12345678      |
+    And I press the Login button
+    And I press "Group Management" button
+    And I click "modify information" on "egarcia@mail.com"
+    And I modify the size of Tshirt to "XXL"
+    And I unselect "Monday" from assistance days
+    When I press Finalize Registration button on modifiying user
+    Then Should show the next information in table
+    |Email: 	| egarcia@mail.com   |
+    |Fee: 	    | 680 €              |
+
 Scenario: Verify remove user from group
     And I login with data below
     |Email:   | mail@mail.com |
@@ -96,7 +134,6 @@ Scenario: Verify remove user from group
     And I press "Group Management" button
     When I remove user with email "egarcia@mail.com"
     Then User with email "egarcia@mail.com" should dissapear from table
-
 
 Scenario: Verify remove user while creating in user 1 tab
     And I login with data below
@@ -114,7 +151,6 @@ Scenario: Verify remove user while creating in user 1 tab
     When I press remove button on user 1
     Then Register form should dissapear
 
-@deleteUser
 Scenario: Verify remove user while creating in conference 1 tab
     And I login with data below
     |Email:   | mail@mail.com |
@@ -135,3 +171,18 @@ Scenario: Verify remove user while creating in conference 1 tab
     |Food Preference: 	| Vegan  |
     When I press remove button on user 1 in conference tab
     Then Register form should dissapear
+
+@deleteUser
+Scenario: Verify modify group information
+   And I login with data below
+    |Email:   | mail@mail.com |
+    |Password: | 12345678      |
+    And I press the Login button
+    And I press "Group Management" button
+    And I press "Modify Group Information" button
+    And I modify contact address to 'Av. Circunvalacion'
+    And I press Next button on contact form
+    And I modify billing address to 'Av. Circunvalacion'
+    And I press Next button on billing form
+    When I press Finalize Registration button on modifiying user
+    Then I should see "Registration" page
