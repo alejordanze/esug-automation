@@ -10,3 +10,10 @@ Scenario: Select that the paid option is working
     And I prees "Invoices" option
     And I press "Has paid" on user "Jack Jonhson"
     Then user "Jack Jonhson" is marked as Has Paid
+
+Scenario: Validate that the download invoices part is working
+    When I enter as admin
+    And I prees "Invoices" option
+    And I click "Export all invoices"
+    And I click "Download Invoices"
+    Then I have invoices.zip 
