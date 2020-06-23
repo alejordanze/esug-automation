@@ -14,9 +14,9 @@ end
 When('I click {string}') do |string|
     case string
         when "Export all invoices"
-            find(:xpath, '/html/body/div/div/main/div/div/div[2]/form/a[2]').click
-        when "Download Invoices"
             find(:xpath, '/html/body/div/div/main/div/div/div[2]/form/a[1]').click
+        when "Download Invoices"
+            find(:xpath, '/html/body/div/div/main/div/div/div[2]/form/a[2]').click
     end
 end
 

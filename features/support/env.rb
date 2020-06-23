@@ -26,7 +26,7 @@ Capybara.default_max_wait_time = 15
 Capybara.default_driver = :selenium
 Capybara.app_host = "http://www.google.com"
 
-DOWNLOAD_PATH = "/Users/miguelalejandrojordan/Downloads"
+DOWNLOAD_PATH = "\Users\saski\Downloads"
 
 class CapybaraDriver
   # register a Selenium driver for the given browser to run on the localhost
