@@ -61,3 +61,45 @@ Then('I see amount as {string} on user {string}') do |amount, name|
     @tr = find('tr', text: name)
     @tr.find('td', text: amount)
 end
+
+When('I put negative value on {string}') do |fee|
+    negative_fee = -100
+    @price_social_dinner = "Price for add person to the Social Dinner (Required)"
+    @all_days_fee = "All Days Fee (Required)"
+    @one_day_fee = "One Day Fee (Required)"
+    @paypal_commission = "Paypal Commission Percentage (Required)"
+    @static_commission = "Static Commission Paypal (Required)"
+    @credit_card_commission = "Credit card Commission Percentage (Required)"
+    case fee    
+        when @price_social_dinner
+            fill_in 'extraPersonSD', :with => negative_fee
+        when @all_days_fee
+            fill_in 'erfAllDaysFee', :with => negative_fee
+        when @one_day_fee
+            fill_in 'erfOneDayFee', :with => negative_fee
+        when @all_days_fee
+            fill_in 'lrfAllDaysFee', :with => negative_fee
+        when @one_day_fee
+            fill_in 'lrfOneDayFee', :with => negative_fee
+        when @paypal_commission
+            fill_in 'payPalCommissionPercentage', :with => negative_fee
+        when @static_commission
+            fill_in 'staticCommissionPaypal', :with => negative_fee
+        when @credit_card_commission
+            fill_in 'creditCardCommissionPercentage', :with => negative_fee
+    end
+end
+
+When('I save it') do
+    find(:xpath, '/html/body/div/div/main/div/div/div[3]/form/button').click
+end
+
+Then('I see that values Need to be a positive number') do
+    message = ": Need to be a positive number"
+    page.has_content?(@price_social_dinner+message)
+    page.has_content?(@all_days_fee+message)
+    page.has_content?(@one_day_fee+message)
+    page.has_content?(@paypal_commission+message)
+    page.has_content?(@static_commission+message)
+    page.has_content?(@credit_card_commission+message)
+end
