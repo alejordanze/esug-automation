@@ -53,3 +53,9 @@ end
 Then('I see my amount as 170') do
     page.has_content?("Payment no registered yet. Amount due: 170 Euro(s)  (NOTE: you could have paid but we could have not registered it yet)")
 end
+
+
+Then('I see amount as {string} on user {string}') do |amount, name|
+    @tr = find('tr', text: name)
+    @tr.find('td', text: amount)
+end
