@@ -2,7 +2,7 @@ Feature: As an attendee
 	I want to register to the talk
 	so I will learn something new
 
-Background: I'm on the login page
+Background:
     Given I am on the login page
 
 Scenario: Fill registration        

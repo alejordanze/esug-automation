@@ -3,16 +3,22 @@ Feature: ESUG register as group manager
    I want to test ESUG registration page for group managers
    so I can add group members for talks
 
-Background: I'm on the login page
+Background:
     Given I am on the login page
+    And I login with data below
+    |Email:   | mail@mail.com |
+    |Password: | 12345678      |
+    And I press the Login button
 
-Scenario: Leave fields in blank in group manager register page          
+Scenario: Leave fields in blank in group manager register page      
+    Given I am on the login page    
     And I press "Group Manager" button
 	And I left all fields in blank
-	When I press the "Next" button
+	When I press the Next button
 	Then error message "This field is required." is showed
 
 Scenario: Verify new user registration
+    Given I am on the login page
     And I press "Group Manager" button
     And I fill the required fields as below
     |First Name: 	    | Miguel         |
@@ -37,28 +43,16 @@ Scenario: Verify new user registration
     Then Should show "Registration Summary" page
 
 Scenario: Verify new group manager login
-    And I login with data below
-    |Email:   | mail@mail.com |
-    |Password: | 12345678      |
-    When I press the Login button
     Then Should show "ESUG 2019 Date and Location Announced" page
 
 @deleteFile
 Scenario: Verify download invoice no users in group 
-    And I login with data below
-    |Email:   | mail@mail.com |
-    |Password: | 12345678     |
-    And I press the Login button
     And I press "Group Management" button
     And I verify that the users group table its empty
     When I press Download Invoice button
     Then The invoice should be downloaded
 
 Scenario: Verify new group user registration
-    And I login with data below
-    |Email:   | mail@mail.com |
-    |Password: | 12345678      |
-    And I press the Login button
     And I press "Group Management" button
     And I press "Register new group user" button
     And I fill the register as below
@@ -78,10 +72,6 @@ Scenario: Verify new group user registration
 
 @getPayment
 Scenario: Verify payment information form credit card
-    And I login with data below
-    |Email:   | mail@mail.com |
-    |Password: | 12345678      |
-    And I press the Login button
     And I press "Group Management" button
     And I press "Payment information" button
     And I select "Credit Card" in payment type
@@ -90,10 +80,6 @@ Scenario: Verify payment information form credit card
     Then I should see "Pay with PayPal" page
 
 Scenario: Verify payment information form credit card
-    And I login with data below
-    |Email:   | mail@mail.com |
-    |Password: | 12345678      |
-    And I press the Login button
     And I press "Group Management" button
     And I press "Payment information" button
     And I select "Bank transfer" in payment type
@@ -103,43 +89,27 @@ Scenario: Verify payment information form credit card
 
 @deleteFile
 Scenario: Verify download invoice with users in group 
-    And I login with data below
-    |Email:   | mail@mail.com |
-    |Password: | 12345678     |
-    And I press the Login button
     And I press "Group Management" button
     And I verify that exists users in group
     When I press Download Invoice button
     Then The invoice should be downloaded
 
 Scenario: Verify modify attendee information
-    And I login with data below
-    |Email:   | mail@mail.com |
-    |Password: | 12345678      |
-    And I press the Login button
     And I press "Group Management" button
-    And I click "modify information" on "egarcia@mail.com"
+    And I click modify information on "egarcia@mail.com"
     And I modify the size of Tshirt to "XXL"
-    And I unselect "Monday" from assistance days
+    And I unselect Monday from assistance days
     When I press Finalize Registration button on modifiying user
     Then Should show the next information in table
     |Email: 	| egarcia@mail.com   |
     |Fee: 	    | 680 €              |
 
 Scenario: Verify remove user from group
-    And I login with data below
-    |Email:   | mail@mail.com |
-    |Password: | 12345678     |
-    And I press the Login button
     And I press "Group Management" button
     When I remove user with email "egarcia@mail.com"
     Then User with email "egarcia@mail.com" should dissapear from table
 
 Scenario: Verify remove user while creating in user 1 tab
-    And I login with data below
-    |Email:   | mail@mail.com |
-    |Password: | 12345678      |
-    And I press the Login button
     And I press "Group Management" button
     And I press "Register new group user" button
     And I fill the register as below
@@ -152,10 +122,6 @@ Scenario: Verify remove user while creating in user 1 tab
     Then Register form should dissapear
 
 Scenario: Verify remove user while creating in conference 1 tab
-    And I login with data below
-    |Email:   | mail@mail.com |
-    |Password: | 12345678      |
-    And I press the Login button
     And I press "Group Management" button
     And I press "Register new group user" button
     And I fill the register as below
@@ -174,10 +140,6 @@ Scenario: Verify remove user while creating in conference 1 tab
 
 @deleteUser
 Scenario: Verify modify group information
-   And I login with data below
-    |Email:   | mail@mail.com |
-    |Password: | 12345678      |
-    And I press the Login button
     And I press "Group Management" button
     And I press "Modify Group Information" button
     And I modify contact address to 'Av. Circunvalacion'

@@ -2,9 +2,10 @@ Feature: As an admin
 	I want to have control of invoices of attendes
 	so I will know who has paid and who are not
     
-Background: I'm on the login page
+Background:
     Given I am on the login page
 
+@deleteFile
 Scenario: Validate that the download invoices part is working
     When I enter as admin
     And I prees "Invoices" option

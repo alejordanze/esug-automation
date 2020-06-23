@@ -29,7 +29,7 @@ When('I left all fields in blank') do
     expect(firstname).to eq('')
 end
   
-When('I press the {string} button') do |buttonName|
+When('I press the Next button') do
     find(:xpath, '/html/body/div/div[1]/div/form/div/div[2]/a[2]').click
 end
   
@@ -183,7 +183,7 @@ Given('I verify that the users group table its empty') do
     expect(page).to have_no_selector(:xpath, '/html/body/div/div[1]/main/div/div/div[4]/table/tbody')
 end
   
-Given('I click {string} on {string}') do |button, email|
+Given('I click modify information on {string}') do |email|
     visit(find(:xpath, "//tr[contains(.,'#{email}')]/td/a", :text => 'edit')[:href])
 end
   
@@ -191,7 +191,7 @@ Given('I modify the size of Tshirt to {string}') do |value|
     select value, :from => "tshirtSize1"
 end
 
-Given('I unselect {string} from assistance days') do |string|
+Given('I unselect Monday from assistance days') do
     xpath = '/html/body/div/div[1]/main/div/form/div/div/div[2]/div[2]/label'
     css_class = find(:xpath, xpath)[:class]
     if(css_class.include?('is-checked'))

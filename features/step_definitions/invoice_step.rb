@@ -5,11 +5,12 @@ end
 When('I press {string} on user {string}') do |string, name|
     ENV['user_restore_name'] = name
     @tr = find('tr', text: name)
-    @tr.find('.mdl-checkbox__input').click
+    @tr.find(:css, '.mdl-checkbox__input').click
 end
 
-Then('user {string} is marked as Has Paid') do |string|
-    @tr.find('.mdl-checkbox__input').should be_checked
+Then('user {string} is marked as Has Paid') do |name|
+    @tr = find('tr', text: name)
+    expect(@tr.find(:css, '.mdl-checkbox__input')).to be_checked
 end
 
 When('I click {string}') do |string|
