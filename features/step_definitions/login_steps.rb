@@ -1,25 +1,21 @@
 
-  Given('I have entered a valid {string} on the email field') do |string|
+  Given('I have entered a valid email on the email field') do
     fill_in 'email-login', :with => 'admin@esug.org'
 end
 
-  Given('I have entered a {string} on the password field') do |string|
+  Given('I have entered a valid password on the password field') do
     fill_in 'password-login', :with => '12345678'
   end
   
  Then('The home page display') do
     visit('http://semantics.bo:8000/ESUG?_s=PMNmHrdnNXB_Ika8&_k=sH6LUPS0mz5YhKR3')
-  end
+end
   
   When('I press the Login button') do
     find(:xpath, '/html/body/div[1]/div/div/div/div[1]/form/button[1]/span').click
   end
 
-  Then('An alert is display') do
-    page.has_content?(error)
-  end
-
-  Given('I have entered long password on the {string} field') do |string|
+  Given('I have entered long password on the password field') do
     fill_in 'password-login', :with => 'EsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsugEsug'
   end
 
@@ -27,7 +23,7 @@ end
     fill_in 'password-login', :with => '87654321'
   end
 
-  Given('I have entered an incorrect {string} on the email field') do |string|
+  Given('I have entered an incorrect email on the email field') do 
     fill_in 'email-login', :with => 'laura@mailcom'
   end
 

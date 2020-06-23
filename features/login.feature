@@ -3,22 +3,22 @@ Feature: Login
     I want to enter my account
     So I can access my privileged content as a user
 
-    Background: I'm on the login page
+    Background:
         Given I am on the login page
 
     Scenario: Login as admin
-        And I have entered a valid "email" on the email field
-        And I have entered a "password" on the password field
+        And I have entered a valid email on the email field
+        And I have entered a valid password on the password field
 	    When I press the Login button
         Then The home page display
 
     Scenario: : Try to login without an email
-        And I have entered a "password" on the password field
+        And I have entered a valid password on the password field
 	    When I press the Login button
         Then error message "Login failed." is showed
 
     Scenario: Try to login without a password
-        And I have entered a valid "email" on the email field
+        And I have entered a valid email on the email field
         When I press the Login button
         Then error message "Login failed." is showed
     
@@ -27,13 +27,13 @@ Feature: Login
         Then error message "Login failed." is showed
 
     Scenario: Login with an incorrect email
-        And I have entered an incorrect "email" on the email field
-        And I have entered a "password" on the password field
+        And I have entered an incorrect email on the email field
+        And I have entered a valid password on the password field
         When I press the Login button
         Then error message "Login failed." is showed
 
     Scenario: Login with an incorrect password
-        And I have entered a valid "email" on the email field
+        And I have entered a valid email on the email field
         And I have entered incorrect password on the password field
         When I press the Login button
         Then error message "Login failed." is showed
@@ -44,13 +44,13 @@ Feature: Login
         Then error message "Login failed." is showed
 
     Scenario: Login with a password over 1000 characters in length
-        And I have entered long password on the "password" field
+        And I have entered long password on the password field
         When I press the Login button
         Then error message "Login failed." is showed
 
     
     Scenario: validate the user's password format
-        And I have entered a valid "email" on the email field
+        And I have entered a valid email on the email field
         And I have entered SQLinjection on the password field
         When I press the Login button
         Then error message "Utiliza un formato que coincida con el solicitado" is showed
@@ -65,8 +65,8 @@ Feature: Login
         Then error message "Login failed." is showed
 
   Scenario: Logout
-        And I have entered a valid "email" on the email field
-        And I have entered a "password" on the password field
+        And I have entered a valid email on the email field
+        And I have entered a valid password on the password field
 	    And I press the Login button
         When I press "Logout" button
         Then I am on the login page
