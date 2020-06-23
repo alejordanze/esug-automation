@@ -5,7 +5,6 @@ Feature: As an admin
 Background: I'm on the login page
     Given I am on the login page
 
-@deleteFile
 Scenario: Validate that the download invoices part is working
     When I enter as admin
     And I prees "Invoices" option
@@ -24,12 +23,6 @@ Scenario: Validate that the payment info is updated when a user is edited
     And I only left Monday
     And I save my Registration
     Then I see my amount as 170
-
-Scenario: Select that the paid option is working
-    When I enter as admin
-    And I prees "Invoices" option
-    And I press "Has paid" on user "Jack Jonhson"
-    Then user "Jack Jonhson" is marked as Has Paid
 
 Scenario: Validate that the list of invoices are updated constantly
     When I enter as admin
