@@ -18,6 +18,9 @@ ENV['email_delete'] = ""
 #File to delete
 ENV['file_delete'] = ""
 
+#User name to restore
+ENV['user_restore_name'] = ""
+
 # Set the host the Capybara tests should be run against
 Capybara.app_host = ENV["CAPYBARA_HOST"]
 
@@ -26,7 +29,7 @@ Capybara.default_max_wait_time = 15
 Capybara.default_driver = :selenium
 Capybara.app_host = "http://www.google.com"
 
-DOWNLOAD_PATH = "/Users/miguelalejandrojordan/Downloads"
+DOWNLOAD_PATH = "\Users\saski\Downloads"
 
 class CapybaraDriver
   # register a Selenium driver for the given browser to run on the localhost
