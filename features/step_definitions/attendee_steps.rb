@@ -62,6 +62,7 @@ Given('I press the Next in {string} form') do |string|
 end
 
 When('I enter as admin') do
+  ENV['email_delete'] = "brayan@gmail.com"
   fill_in 'email-login', :with => ENV['admin_email']
   fill_in 'password-login', :with => ENV['admin_password']
   find(:xpath, '/html/body/div[1]/div/div/div/div[1]/form/button[1]/span').click
@@ -69,4 +70,8 @@ end
 
 Then('I should see my email on accouts') do
   find(:xpath, '/html/body/div/div/div[1]/nav/a[4]').click
+end
+
+Then('Should see {string} in the table') do |email|
+  page.has_content?(email)
 end

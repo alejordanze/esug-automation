@@ -17,7 +17,8 @@ When('I click {string}') do |string|
         when "Export all invoices"
             find(:xpath, '/html/body/div/div/main/div/div/div[2]/form/a[1]').click
         when "Download Invoices"
-            find(:xpath, '/html/body/div/div/main/div/div/div[2]/form/a[2]').click
+            find(:xpath, '/html/body/div/div[1]/main/div/div/div[2]/form/a[2]').click
+            sleep 3
     end
 end
 
@@ -54,7 +55,6 @@ end
 Then('I see my amount as 170') do
     page.has_content?("Payment no registered yet. Amount due: 170 Euro(s)  (NOTE: you could have paid but we could have not registered it yet)")
 end
-
 
 Then('I see amount as {string} on user {string}') do |amount, name|
     @tr = find('tr', text: name)
