@@ -36,3 +36,18 @@ Scenario: Select that the paid option is working
     And I prees "Invoices" option
     And I press "Has paid" on user "Jack Jonhson"
     Then user "Jack Jonhson" is marked as Has Paid
+
+Scenario: Verify if the statistics only show valid values
+    When I enter as admin
+    And I press "Configuration"
+    And I press "Fee"
+    And I put negative value on "Price for add person to the Social Dinner (Required)"
+    And I put negative value on "All Days Fee (Required)"
+    And I put negative value on "One Day Fee (Required)"
+    And I put negative value on "All Days Fee (Required)"
+    And I put negative value on "One Day Fee (Required)"
+    And I put negative value on "Paypal Commission Percentage (Required)"
+    And I put negative value on "Static Commission Paypal (Required)"
+    And I put negative value on "Credit card Commission Percentage (Required)"
+    And I save it
+    Then I see that values Need to be a positive number
