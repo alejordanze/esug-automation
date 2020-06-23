@@ -5,7 +5,6 @@ Feature: As an attendee
 Background: I'm on the login page
     Given I am on the login page
 
-@deleteUser
 Scenario: Fill registration        
 	And I press Register option 
 	When I enter the required fields as below
@@ -36,7 +35,7 @@ Scenario: Fill registration
     And I press the Next in "Finalize Registration" form
     Then Should show the user "brayan@gmail.com" in the table
 
-
+@deleteUser
 Scenario: Verify that my user exists
     When I enter as admin
     Then I should see my email on accouts
