@@ -3,6 +3,7 @@ When('I prees {string} option') do |string|
 end
 
 When('I press {string} on user {string}') do |string, name|
+    ENV['user_restore_name'] = name
     @tr = find('tr', text: name)
     @tr.find('.mdl-checkbox__input').click
 end

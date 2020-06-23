@@ -18,6 +18,9 @@ ENV['email_delete'] = ""
 #File to delete
 ENV['file_delete'] = ""
 
+#User name to restore
+ENV['user_restore_name'] = ""
+
 # Set the host the Capybara tests should be run against
 Capybara.app_host = ENV["CAPYBARA_HOST"]
 
